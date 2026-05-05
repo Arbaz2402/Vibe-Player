@@ -103,49 +103,6 @@ A fully functional music player web app built from scratch using **HTML**, **CSS
 | Storage | localStorage |
 | Font | Google Fonts (Poppins) |
 
-## Project Structure
-
-```
-spotify-player/
-├── index.html              # UI structure, modals, overlays
-├── css/                    # Modular stylesheets
-│   ├── base.css            # Reset, CSS variables, typography, scrollbar
-│   ├── sidebar.css         # Sidebar, logo, nav menu, playlists
-│   ├── topbar.css          # Top bar, search, favorites, profile dropdown
-│   ├── hero.css            # Hero section, action buttons
-│   ├── songlist.css        # Song list grid, items, equalizer, 3-dot menu
-│   ├── player.css          # Bottom player bar, controls, progress, volume
-│   ├── queue.css           # Queue panel sidebar
-│   ├── overlays.css        # Context menu, visualizer, modals, toast, loading
-│   └── responsive.css      # Media query breakpoints
-├── js/                     # Modular JavaScript
-│   ├── storage.js          # localStorage helpers (load/save)
-│   ├── api.js              # iTunes Search API integration
-│   ├── state.js            # App state variables, audio element
-│   ├── dom.js              # DOM element references
-│   ├── helpers.js          # Utility functions (formatTime, toast, getSongs)
-│   ├── ui.js               # UI update functions (player, volume, sort, etc.)
-│   ├── queue.js            # Queue panel management
-│   ├── contextmenu.js      # Right-click / 3-dot context menu
-│   ├── visualizer.js       # Canvas-based audio visualizer
-│   ├── songlist.js         # Song list rendering and loading
-│   ├── player.js           # Audio playback, controls, shuffle, repeat, like
-│   ├── playlist.js         # Playlist switching, creation, navigation
-│   ├── search.js           # Live search with debouncing
-│   ├── profile.js          # Profile and settings management
-│   ├── events.js           # Event listeners and keyboard shortcuts
-│   └── app.js              # App initialization (entry point)
-├── README.md               # Project documentation (this file)
-├── NOTES.md                # Personal study notes & interview prep
-└── screenshots/            # App screenshots for README
-    ├── home.png
-    ├── now-playing.png
-    ├── search.png
-    ├── context-menu.png
-    ├── queue.png
-    └── visualizer.png
-```
-
 ## How to Run
 
 1. Clone or download this repository
@@ -164,28 +121,6 @@ python3 -m http.server 8080
 ## API
 
 This project uses the [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/) which is free, requires no API key, and works directly from the browser. Songs are 30-second preview clips provided by Apple.
-
-## Screenshots
-
-### Home — Song List
-![Home](screenshots/home.png)
-
-### Now Playing
-![Now Playing](screenshots/now-playing.png)
-
-### Live Search
-![Search](screenshots/search.png)
-
-### Context Menu & 3-Dot Menu
-![Context Menu](screenshots/context-menu.png)
-
-### Queue Panel
-![Queue](screenshots/queue.png)
-
-### Full-Screen Visualizer
-![Visualizer](screenshots/visualizer.png)
-
-> **To add your own screenshots:** Take screenshots of the app and save them in the `screenshots/` folder with the names above (`home.png`, `now-playing.png`, `search.png`, `context-menu.png`, `queue.png`, `visualizer.png`).
 
 ## Key Concepts Demonstrated
 
