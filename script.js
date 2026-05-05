@@ -83,7 +83,6 @@ let isSearchActive = false;
 let searchResults = [];
 
 const profile = loadStorage("profile", { name: "Arbaz", color: "#1db954" });
-const settings = loadStorage("settings", { quality: "normal", notifications: true, autoplay: false });
 
 // ---- Audio Player ----
 
@@ -1154,26 +1153,6 @@ function saveProfile() {
   showToast("Profile updated!");
 }
 
-// ---- Settings ----
-
-function openSettings() {
-  profileDropdown.classList.add("hidden");
-  userAvatar.classList.remove("open");
-  $("settingsModalOverlay").classList.remove("hidden");
-  $("settingQuality").value = settings.quality;
-  $("settingNotifications").classList.toggle("active", settings.notifications);
-  $("settingAutoplay").classList.toggle("active", settings.autoplay);
-}
-
-function saveSettings() {
-  settings.quality = $("settingQuality").value;
-  settings.notifications = $("settingNotifications").classList.contains("active");
-  settings.autoplay = $("settingAutoplay").classList.contains("active");
-  saveStorage("settings", settings);
-  $("settingsModalOverlay").classList.add("hidden");
-  showToast("Settings saved!");
-}
-
 // ---- Fullscreen ----
 
 function toggleFullscreen() {
@@ -1423,23 +1402,6 @@ function setupEvents() {
 
   $("profileModalOverlay").addEventListener("click", function (e) {
     if (e.target === $("profileModalOverlay")) $("profileModalOverlay").classList.add("hidden");
-  });
-
-  // settings
-  $("btnSettings").addEventListener("click", openSettings);
-  $("btnCancelSettings").addEventListener("click", function () {
-    $("settingsModalOverlay").classList.add("hidden");
-  });
-  $("btnSaveSettings").addEventListener("click", saveSettings);
-  $("settingsModalOverlay").addEventListener("click", function (e) {
-    if (e.target === $("settingsModalOverlay")) $("settingsModalOverlay").classList.add("hidden");
-  });
-
-  $("settingNotifications").addEventListener("click", function () {
-    $("settingNotifications").classList.toggle("active");
-  });
-  $("settingAutoplay").addEventListener("click", function () {
-    $("settingAutoplay").classList.toggle("active");
   });
 
   // keyboard shortcuts modal

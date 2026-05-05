@@ -2,6 +2,20 @@
 
 A fully functional music player web app built from scratch using **HTML**, **CSS**, and **JavaScript** — no frameworks, no libraries. Streams real songs via the iTunes Search API with album artwork, 30-second audio previews, and a complete Spotify-like dark UI.
 
+## Screenshots
+
+<div align="center">
+  <h3>Main Interface</h3>
+  <img src="screenshots/main-ui.png" width="800" alt="Vibe Player Main UI">
+  <br><br>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+    <img src="screenshots/search.png" width="400" alt="Search Feature">
+    <img src="screenshots/visualizer.png" width="400" alt="Visualizer">
+    <img src="screenshots/queue.png" width="400" alt="Queue Management">
+    <img src="screenshots/edit-profile.png" width="400" alt="Edit Profile">
+  </div>
+</div>
+
 ## Live Features
 
 ### Music Playback
@@ -41,9 +55,8 @@ A fully functional music player web app built from scratch using **HTML**, **CSS
 - Bouncing bars and wave animations react to playback state
 - Album art spins in the center while playing
 
-### Profile & Settings
+### Profile
 - Editable profile (name + avatar color)
-- Settings modal (audio quality, notifications, autoplay)
 - Keyboard shortcuts reference panel
 - Theme toggle (dark mode)
 

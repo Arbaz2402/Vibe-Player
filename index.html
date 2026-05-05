@@ -134,10 +134,6 @@
               <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
               <span>Edit Profile</span>
             </button>
-            <button class="dropdown-item" id="btnSettings">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-              <span>Settings</span>
-            </button>
             <button class="dropdown-item" id="btnKeyboardShortcuts">
               <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6" y2="8"/><line x1="10" y1="8" x2="10" y2="8"/><line x1="14" y1="8" x2="14" y2="8"/><line x1="18" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="18" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/></svg>
               <span>Keyboard Shortcuts</span>
@@ -406,44 +402,6 @@
       </div>
       <div class="modal-actions">
         <button class="btn-create" id="btnCloseShortcuts">Got it!</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Settings Modal -->
-  <div class="modal-overlay hidden" id="settingsModalOverlay">
-    <div class="modal" role="dialog">
-      <h2>Settings</h2>
-      <div class="settings-list">
-        <div class="setting-item">
-          <div class="setting-info">
-            <span class="setting-label">Audio Quality</span>
-            <span class="setting-desc">Higher quality uses more data</span>
-          </div>
-          <select class="setting-select" id="settingQuality">
-            <option value="low">Low</option>
-            <option value="normal" selected>Normal</option>
-            <option value="high">High</option>
-          </select>
-        </div>
-        <div class="setting-item">
-          <div class="setting-info">
-            <span class="setting-label">Show Notifications</span>
-            <span class="setting-desc">Song change notifications</span>
-          </div>
-          <div class="toggle-switch active" id="settingNotifications"><div class="toggle-knob"></div></div>
-        </div>
-        <div class="setting-item">
-          <div class="setting-info">
-            <span class="setting-label">Auto-play</span>
-            <span class="setting-desc">Play similar songs when playlist ends</span>
-          </div>
-          <div class="toggle-switch" id="settingAutoplay"><div class="toggle-knob"></div></div>
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button class="btn-cancel" id="btnCancelSettings">Cancel</button>
-        <button class="btn-create" id="btnSaveSettings">Save</button>
       </div>
     </div>
   </div>

@@ -46,21 +46,3 @@ function saveProfile() {
   $("profileModalOverlay").classList.add("hidden");
   showToast("Profile updated!");
 }
-
-function openSettings() {
-  profileDropdown.classList.add("hidden");
-  userAvatar.classList.remove("open");
-  $("settingsModalOverlay").classList.remove("hidden");
-  $("settingQuality").value = settings.quality;
-  $("settingNotifications").classList.toggle("active", settings.notifications);
-  $("settingAutoplay").classList.toggle("active", settings.autoplay);
-}
-
-function saveSettings() {
-  settings.quality = $("settingQuality").value;
-  settings.notifications = $("settingNotifications").classList.contains("active");
-  settings.autoplay = $("settingAutoplay").classList.contains("active");
-  saveStorage("settings", settings);
-  $("settingsModalOverlay").classList.add("hidden");
-  showToast("Settings saved!");
-}

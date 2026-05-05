@@ -237,23 +237,6 @@ function setupEvents() {
     if (e.target === $("profileModalOverlay")) $("profileModalOverlay").classList.add("hidden");
   });
 
-  // Settings
-  $("btnSettings").addEventListener("click", openSettings);
-  $("btnCancelSettings").addEventListener("click", function () {
-    $("settingsModalOverlay").classList.add("hidden");
-  });
-  $("btnSaveSettings").addEventListener("click", saveSettings);
-  $("settingsModalOverlay").addEventListener("click", function (e) {
-    if (e.target === $("settingsModalOverlay")) $("settingsModalOverlay").classList.add("hidden");
-  });
-
-  $("settingNotifications").addEventListener("click", function () {
-    $("settingNotifications").classList.toggle("active");
-  });
-  $("settingAutoplay").addEventListener("click", function () {
-    $("settingAutoplay").classList.toggle("active");
-  });
-
   // Keyboard shortcuts modal
   $("btnKeyboardShortcuts").addEventListener("click", function () {
     profileDropdown.classList.add("hidden");

@@ -39,7 +39,6 @@ var isSearchActive = false;
 var searchResults = [];
 
 var profile = loadStorage("profile", { name: "Arbaz", color: "#1db954" });
-var settings = loadStorage("settings", { quality: "normal", notifications: true, autoplay: false });
 
 // Audio element
 var audio = new Audio();
