@@ -1,0 +1,58 @@
+/* Base reset, variables, typography, scrollbar */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #121212;
+  --bg-elevated: #1a1a2e;
+  --bg-card: #181818;
+  --bg-hover: #282828;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #6a6a6a;
+  --accent: #1db954;
+  --accent-hover: #1ed760;
+  --accent-glow: rgba(29, 185, 84, 0.3);
+  --danger: #e74c3c;
+  --border: rgba(255, 255, 255, 0.06);
+  --sidebar-width: 260px;
+  --player-height: 90px;
+  --queue-width: 320px;
+  --transition: 0.2s ease;
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+.app {
+  display: flex;
+  height: calc(100vh - var(--player-height));
+}
+
+.hidden { display: none !important; }

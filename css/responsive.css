@@ -1,0 +1,30 @@
+/* Responsive breakpoints */
+
+@media (max-width: 900px) {
+  .sidebar { width: 72px; padding: 16px 8px; align-items: center; }
+  .logo-text, .nav-item span, .playlist-header h3, .playlist-item span, .sidebar-divider, .playlist-section, .sidebar-footer { display: none; }
+  .nav-item { justify-content: center; padding: 12px; }
+  .logo { padding: 0; justify-content: center; }
+  .song-list-header, .song-item { grid-template-columns: 40px 1fr 60px 40px; }
+  .col-album, .song-album { display: none; }
+  .hero-title { font-size: 2.5rem; }
+  .now-playing { width: auto; min-width: auto; }
+  .now-playing-info { display: none; }
+  .btn-like { display: none; }
+  .extra-controls { width: auto; }
+  .volume-bar { width: 60px; }
+  .search-box { max-width: 200px; }
+  .queue-panel { width: 260px; }
+  .btn-sort span { display: none; }
+  .nav-arrows { display: none; }
+  .btn-favorites span { display: none; }
+}
+
+@media (max-width: 600px) {
+  .search-box { max-width: 150px; }
+  .hero-title { font-size: 1.8rem; }
+  .volume-control { display: none; }
+  .control-buttons { gap: 10px; }
+  #btnQueue, #btnFullscreen { display: none; }
+  .queue-panel { display: none !important; }
+}

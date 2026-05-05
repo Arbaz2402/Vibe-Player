@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe Player - Music Streaming</title>
+  <!-- CSS Modules -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/topbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/songlist.css" />
+  <link rel="stylesheet" href="css/player.css" />
+  <link rel="stylesheet" href="css/queue.css" />
+  <link rel="stylesheet" href="css/overlays.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <svg viewBox="0 0 40 40" class="logo-icon">
+          <circle cx="20" cy="20" r="18" fill="url(#logoGrad)" />
+          <path d="M14 12 C14 12 28 18 28 20 C28 22 14 28 14 28 Z" fill="#fff"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1db954" />
+              <stop offset="100%" stop-color="#1ed760" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">Vibe</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active" data-section="home">
+          <svg viewBox="0 0 24 24"><path d="M3 9.5L12 2l9 7.5V20a2 2 0 01-2 2H5a2 2 0 01-2-2V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-section="search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>Search</span>
+        </a>
+        <a href="#" class="nav-item" data-section="library">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          <span>Library</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="playlist-section">
+        <div class="playlist-header">
+          <h3>Playlists</h3>
+          <button class="btn-add-playlist" id="btnAddPlaylist" title="Create playlist">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+        <ul class="playlist-list" id="playlistList">
+          <li class="playlist-item" data-playlist="liked">
+            <div class="playlist-icon liked-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <span>Liked Songs</span>
+          </li>
+          <li class="playlist-item active" data-playlist="bollywood">
+            <div class="playlist-icon" style="background: linear-gradient(135deg, #ff6b6b, #ffa502);">B</div>
+            <span>Bollywood Hits</span>
+          </li>
+          <li class="playlist-item" data-playlist="chill">
+            <div class="playlist-icon" style="background: linear-gradient(135deg, #5b86e5, #36d1dc);">C</div>
+            <span>Chill Vibes</span>
+          </li>
+          <li class="playlist-item" data-playlist="workout">
+            <div class="playlist-icon" style="background: linear-gradient(135deg, #f7971e, #ffd200);">W</div>
+            <span>Workout Mix</span>
+          </li>
+          <li class="playlist-item" data-playlist="focus">
+            <div class="playlist-icon" style="background: linear-gradient(135deg, #764ba2, #667eea);">F</div>
+            <span>Deep Focus</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="shortcut-hint">
+          <kbd>Space</kbd> Play &bull; <kbd>M</kbd> Mute
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+      <!-- Top Bar -->
+      <div class="top-bar" id="topBar">
+        <div class="nav-arrows">
+          <button class="btn-nav-arrow" id="btnBack" title="Go back">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="btn-nav-arrow" id="btnForward" title="Go forward">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="search-box" id="searchBox">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="What do you want to listen to?" id="searchInput" autocomplete="off" />
+          <button class="btn-clear-search hidden" id="btnClearSearch" title="Clear">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <button class="btn-favorites" id="btnFavorites" title="Liked Songs">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <span class="fav-count" id="favCount">0</span>
+        </button>
+        <div class="user-menu" id="userMenu">
+          <div class="user-avatar" id="userAvatar" tabindex="0" role="button" aria-haspopup="true">A</div>
+          <!-- Profile Dropdown -->
+          <div class="profile-dropdown hidden" id="profileDropdown">
+            <div class="dropdown-header">
+              <div class="dropdown-avatar">A</div>
+              <div class="dropdown-user-info">
+                <span class="dropdown-name" id="dropdownName">Arbaz</span>
+                <span class="dropdown-email">arbaz@vibemusic.com</span>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="btnEditProfile">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Edit Profile</span>
+            </button>
+            <button class="dropdown-item" id="btnSettings">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              <span>Settings</span>
+            </button>
+            <button class="dropdown-item" id="btnKeyboardShortcuts">
+              <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6" y2="8"/><line x1="10" y1="8" x2="10" y2="8"/><line x1="14" y1="8" x2="14" y2="8"/><line x1="18" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="18" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/></svg>
+              <span>Keyboard Shortcuts</span>
+            </button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="btnThemeToggle">
+              <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+              <span>Dark Mode</span>
+              <div class="toggle-switch active" id="themeToggle"><div class="toggle-knob"></div></div>
+            </button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item logout" id="btnLogout">
+              <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              <span>Log Out</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Section -->
+      <section class="hero-section" id="heroSection">
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+          <span class="hero-label">PLAYLIST</span>
+          <h1 class="hero-title" id="heroTitle">Bollywood Hits</h1>
+          <p class="hero-meta"><span class="hero-user">Arbaz</span> &bull; <span id="songCount">0</span> songs, <span id="totalDuration">0 min</span></p>
+          <div class="hero-actions">
+            <button class="btn-play-large" id="btnPlayAll" title="Play all">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <button class="btn-shuffle-large" id="btnShuffleAll" title="Shuffle play">
+              <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+            </button>
+            <button class="btn-sort" id="btnSort" title="Sort songs">
+              <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="8" y2="18"/></svg>
+              <span>Sort</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Song List -->
+      <section class="song-list-section">
+        <div class="song-list-header">
+          <span class="col-number">#</span>
+          <span class="col-title">TITLE</span>
+          <span class="col-album">ALBUM</span>
+          <span class="col-duration">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <span></span>
+        </div>
+        <ul class="song-list" id="songList"></ul>
+        <div class="loading-state hidden" id="loadingState">
+          <div class="spinner"></div>
+          <p>Fetching songs...</p>
+        </div>
+        <div class="error-state hidden" id="errorState">
+          <p>Couldn't load songs. Check your internet and try again.</p>
+          <button class="btn-create" id="btnRetry">Retry</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Queue Sidebar -->
+    <aside class="queue-panel hidden" id="queuePanel">
+      <div class="queue-header">
+        <h3>Queue</h3>
+        <button class="btn-close-queue" id="btnCloseQueue" title="Close queue">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="queue-now-playing" id="queueNowPlaying">
+        <h4>Now Playing</h4>
+        <div class="queue-current" id="queueCurrent">
+          <span class="queue-empty">Nothing playing</span>
+        </div>
+      </div>
+      <div class="queue-divider"></div>
+      <div class="queue-upcoming">
+        <h4>Next Up <span class="queue-count" id="queueCount">0</span></h4>
+        <ul class="queue-list" id="queueList"></ul>
+        <div class="queue-empty-state hidden" id="queueEmptyState">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <p>Add songs to your queue</p>
+        </div>
+      </div>
+      <button class="btn-clear-queue" id="btnClearQueue">Clear Queue</button>
+    </aside>
+  </div>
+
+  <!-- Bottom Player Bar -->
+  <div class="player-bar" id="playerBar">
+    <div class="now-playing">
+      <div class="now-playing-art" id="nowPlayingArt">
+        <div class="art-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+      </div>
+      <div class="now-playing-info">
+        <span class="now-playing-title" id="nowPlayingTitle">No track selected</span>
+        <span class="now-playing-artist" id="nowPlayingArtist">Select a song to play</span>
+      </div>
+      <button class="btn-like" id="btnLike" title="Like">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </button>
+    </div>
+
+    <div class="player-controls">
+      <div class="control-buttons">
+        <button class="btn-control" id="btnShuffle" title="Shuffle">
+          <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        </button>
+        <button class="btn-control" id="btnPrev" title="Previous">
+          <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+        </button>
+        <button class="btn-play" id="btnPlay" title="Play">
+          <svg viewBox="0 0 24 24" class="icon-play"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg viewBox="0 0 24 24" class="icon-pause hidden"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button class="btn-control" id="btnNext" title="Next">
+          <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+        </button>
+        <button class="btn-control" id="btnRepeat" title="Repeat">
+          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+        </button>
+      </div>
+      <div class="progress-container">
+        <span class="time-current" id="timeCurrent">0:00</span>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-filled" id="progressFilled"></div>
+          <div class="progress-thumb" id="progressThumb"></div>
+        </div>
+        <span class="time-total" id="timeTotal">0:00</span>
+      </div>
+    </div>
+
+    <div class="extra-controls">
+      <button class="btn-control" id="btnQueue" title="Queue">
+        <svg viewBox="0 0 24 24"><path d="M11 5H6"/><path d="M11 9H6"/><path d="M11 13H6"/><path d="M18 8v8"/><path d="M14 12h8"/></svg>
+      </button>
+      <div class="volume-control">
+        <button class="btn-control" id="btnVolume" title="Volume">
+          <svg viewBox="0 0 24 24" class="icon-vol-high"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg>
+          <svg viewBox="0 0 24 24" class="icon-vol-mute hidden"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+        <div class="volume-bar" id="volumeBar">
+          <div class="volume-filled" id="volumeFilled"></div>
+          <div class="volume-thumb" id="volumeThumb"></div>
+        </div>
+      </div>
+      <button class="btn-control" id="btnVisualizer" title="Visualizer (V)">
+        <svg viewBox="0 0 24 24"><rect x="1" y="14" width="4" height="7" rx="1"/><rect x="7" y="8" width="4" height="13" rx="1"/><rect x="13" y="3" width="4" height="18" rx="1"/><rect x="19" y="10" width="4" height="11" rx="1"/></svg>
+      </button>
+      <button class="btn-control" id="btnFullscreen" title="Fullscreen (F)">
+        <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Audio Visualizer Overlay -->
+  <div class="visualizer-overlay hidden" id="visualizerOverlay">
+    <button class="btn-close-visualizer" id="btnCloseVisualizer">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <canvas id="visualizerCanvas"></canvas>
+    <div class="visualizer-info">
+      <div class="viz-art" id="vizArt"></div>
+      <h2 class="viz-title" id="vizTitle">No Track Playing</h2>
+      <p class="viz-artist" id="vizArtist">-</p>
+    </div>
+  </div>
+
+  <!-- Right-Click Context Menu -->
+  <div class="context-menu hidden" id="contextMenu">
+    <button class="context-item" data-action="play">
+      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span>Play</span>
+    </button>
+    <button class="context-item" data-action="queue">
+      <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      <span>Add to Queue</span>
+    </button>
+    <div class="context-divider"></div>
+    <button class="context-item" data-action="like">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <span id="contextLikeText">Like</span>
+    </button>
+    <button class="context-item has-submenu" data-action="addToPlaylist">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <span>Add to Playlist</span>
+      <svg class="submenu-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="context-divider"></div>
+    <button class="context-item" data-action="share">
+      <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      <span>Share</span>
+    </button>
+  </div>
+
+  <!-- Playlist Submenu -->
+  <div class="context-menu submenu hidden" id="playlistSubmenu"></div>
+
+  <!-- Create Playlist Modal -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal" role="dialog" aria-labelledby="modalTitle">
+      <h2 id="modalTitle">Create Playlist</h2>
+      <input type="text" placeholder="Playlist name..." id="playlistNameInput" class="modal-input" maxlength="30" />
+      <div class="char-counter"><span id="charCount">0</span>/30</div>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="btnCancelModal">Cancel</button>
+        <button class="btn-create" id="btnCreatePlaylist">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div class="modal-overlay hidden" id="profileModalOverlay">
+    <div class="modal" role="dialog">
+      <h2>Edit Profile</h2>
+      <div class="form-group">
+        <label for="profileNameInput">Display Name</label>
+        <input type="text" id="profileNameInput" class="modal-input" maxlength="20" />
+      </div>
+      <div class="form-group">
+        <label>Avatar Color</label>
+        <div class="color-picker" id="colorPicker">
+          <div class="color-option active" data-color="#1db954" style="background:#1db954;"></div>
+          <div class="color-option" data-color="#e74c3c" style="background:#e74c3c;"></div>
+          <div class="color-option" data-color="#3498db" style="background:#3498db;"></div>
+          <div class="color-option" data-color="#f39c12" style="background:#f39c12;"></div>
+          <div class="color-option" data-color="#9b59b6" style="background:#9b59b6;"></div>
+          <div class="color-option" data-color="#e84393" style="background:#e84393;"></div>
+          <div class="color-option" data-color="#00cec9" style="background:#00cec9;"></div>
+          <div class="color-option" data-color="#fd79a8" style="background:#fd79a8;"></div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="btnCancelProfile">Cancel</button>
+        <button class="btn-create" id="btnSaveProfile">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div class="modal-overlay hidden" id="shortcutsModalOverlay">
+    <div class="modal modal-wide" role="dialog">
+      <h2>Keyboard Shortcuts</h2>
+      <div class="shortcuts-grid">
+        <div class="shortcut-row"><kbd>Space</kbd><span>Play / Pause</span></div>
+        <div class="shortcut-row"><kbd>Shift + &rarr;</kbd><span>Next Track</span></div>
+        <div class="shortcut-row"><kbd>Shift + &larr;</kbd><span>Previous Track</span></div>
+        <div class="shortcut-row"><kbd>&rarr;</kbd><span>Seek Forward 5s</span></div>
+        <div class="shortcut-row"><kbd>&larr;</kbd><span>Seek Backward 5s</span></div>
+        <div class="shortcut-row"><kbd>&uarr;</kbd><span>Volume Up</span></div>
+        <div class="shortcut-row"><kbd>&darr;</kbd><span>Volume Down</span></div>
+        <div class="shortcut-row"><kbd>M</kbd><span>Toggle Mute</span></div>
+        <div class="shortcut-row"><kbd>S</kbd><span>Toggle Shuffle</span></div>
+        <div class="shortcut-row"><kbd>R</kbd><span>Toggle Repeat</span></div>
+        <div class="shortcut-row"><kbd>V</kbd><span>Toggle Visualizer</span></div>
+        <div class="shortcut-row"><kbd>Q</kbd><span>Toggle Queue</span></div>
+        <div class="shortcut-row"><kbd>F</kbd><span>Toggle Fullscreen</span></div>
+        <div class="shortcut-row"><kbd>L</kbd><span>Like Current Song</span></div>
+        <div class="shortcut-row"><kbd>/</kbd><span>Focus Search</span></div>
+        <div class="shortcut-row"><kbd>Esc</kbd><span>Close Overlay</span></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-create" id="btnCloseShortcuts">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay hidden" id="settingsModalOverlay">
+    <div class="modal" role="dialog">
+      <h2>Settings</h2>
+      <div class="settings-list">
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Audio Quality</span>
+            <span class="setting-desc">Higher quality uses more data</span>
+          </div>
+          <select class="setting-select" id="settingQuality">
+            <option value="low">Low</option>
+            <option value="normal" selected>Normal</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Show Notifications</span>
+            <span class="setting-desc">Song change notifications</span>
+          </div>
+          <div class="toggle-switch active" id="settingNotifications"><div class="toggle-knob"></div></div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Auto-play</span>
+            <span class="setting-desc">Play similar songs when playlist ends</span>
+          </div>
+          <div class="toggle-switch" id="settingAutoplay"><div class="toggle-knob"></div></div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="btnCancelSettings">Cancel</button>
+        <button class="btn-create" id="btnSaveSettings">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast hidden" id="toast">
+    <span id="toastMessage"></span>
+  </div>
+
+  <!-- JS Modules (loaded in dependency order) -->
+  <script src="js/storage.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/dom.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/queue.js"></script>
+  <script src="js/contextmenu.js"></script>
+  <script src="js/visualizer.js"></script>
+  <script src="js/songlist.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/playlist.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
