@@ -103,6 +103,45 @@ A fully functional music player web app built from scratch using **HTML**, **CSS
 | Storage | localStorage |
 | Font | Google Fonts (Poppins) |
 
+## Project Structure
+
+```
+spotify-player/
+├── index.html              # UI structure, modals, overlays
+├── css/                    # Modular stylesheets
+│   ├── base.css            # Reset, CSS variables, typography
+│   ├── sidebar.css         # Sidebar, logo, nav menu, playlists
+│   ├── topbar.css          # Top bar, search, favorites, profile
+│   ├── hero.css            # Hero section, action buttons
+│   ├── songlist.css        # Song list grid, items, equalizer
+│   ├── player.css          # Bottom player bar, controls, volume
+│   ├── queue.css           # Queue panel sidebar
+│   ├── overlays.css        # Context menu, visualizer, modals
+│   ├── responsive.css      # Media query breakpoints
+│   └── style.css           # Monolithic stylesheet (backup)
+├── js/                     # Modular JavaScript
+│   ├── storage.js          # localStorage helpers (load/save)
+│   ├── api.js              # iTunes Search API integration
+│   ├── state.js            # App state variables, audio element
+│   ├── dom.js              # DOM element references
+│   ├── helpers.js          # Utility functions
+│   ├── ui.js               # UI update functions
+│   ├── queue.js            # Queue panel management
+│   ├── contextmenu.js      # Right-click / 3-dot context menu
+│   ├── visualizer.js       # Canvas-based audio visualizer
+│   ├── songlist.js         # Song list rendering and loading
+│   ├── player.js           # Audio playback, controls
+│   ├── playlist.js         # Playlist switching, creation
+│   ├── search.js           # Live search with debouncing
+│   ├── profile.js          # Profile management
+│   ├── events.js           # Event listeners
+│   ├── app.js              # App initialization (entry point)
+│   └── script.js           # Monolithic script (backup)
+├── README.md               # Project documentation
+├── NOTES.md                # Personal study notes & interview prep
+└── screenshots/            # App screenshots for README
+```
+
 ## How to Run
 
 1. Clone or download this repository
