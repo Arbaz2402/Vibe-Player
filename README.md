@@ -1,5 +1,7 @@
 # Vibe Player - Spotify-Inspired Music Streaming UI
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=netlify)](https://vibeplayer24.netlify.app/)
+
 A fully functional music player web app built from scratch using **HTML**, **CSS**, and **JavaScript** — no frameworks, no libraries. Streams real songs via the iTunes Search API with album artwork, 30-second audio previews, and a complete Spotify-like dark UI.
 
 ## Screenshots
