@@ -138,7 +138,6 @@ spotify-player/
 │   ├── app.js              # App initialization (entry point)
 │   └── script.js           # Monolithic script (backup)
 ├── README.md               # Project documentation
-├── NOTES.md                # Personal study notes & interview prep
 └── screenshots/            # App screenshots for README
 ```
 
